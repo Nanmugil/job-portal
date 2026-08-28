@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>View Applicants | JobPortal</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* ================= RESET ================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ================= BODY ================= */
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe,
+                    #f8fafc
+                );
+
+            color: #172033;
+
+            padding: 25px 20px;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+        }
+
+
+        /* ================= TOP BAR ================= */
+
+        .top-bar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .brand {
+
+            color: #2563eb;
+
+            font-size: 26px;
+
+            font-weight: 700;
+        }
+
+
+        .back-btn {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #ffffff;
+
+            color: #2563eb;
+
+            border: 1px solid #dbe3ef;
+
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .back-btn:hover {
+
+            background: #eff6ff;
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .page-title {
+
+            margin-bottom: 7px;
+
+            color: #172554;
+
+            font-size: 28px;
+        }
+
+
+        .page-description {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================= JOB INFO ================= */
+
+        .job-info {
+
+            background: #ffffff;
+
+            padding: 23px 25px;
+
+            border-radius: 14px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 5px 18px
+                rgba(15, 23, 42, 0.07);
+
+            margin-bottom: 25px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .job-info::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 4px;
+
+            height: 100%;
+
+            background: #2563eb;
+        }
+
+
+        .job-info h3 {
+
+            color: #172554;
+
+            font-size: 20px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .job-details {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 18px;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        .job-details strong {
+
+            color: #334155;
+        }
+
+
+        /* ================= APPLICANTS CARD ================= */
+
+        .applicants-card {
+
+            background: #ffffff;
+
+            padding: 25px;
+
+            border-radius: 14px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 5px 18px
+                rgba(15, 23, 42, 0.07);
+        }
+
+
+        .applicants-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .applicants-header h2 {
+
+            color: #172554;
+
+            font-size: 21px;
+        }
+
+
+        .applicant-count {
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* ================= TABLE ================= */
+
+        .table-wrapper {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+        }
+
+
+        table {
+
+            width: 100%;
+
+            min-width: 1050px;
+
+            border-collapse: collapse;
+        }
+
+
+        th {
+
+            background: #172554;
+
+            color: #ffffff;
+
+            padding: 14px 12px;
+
+            text-align: center;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+        }
+
+
+        td {
+
+            padding: 14px 12px;
+
+            border-bottom: 1px solid #eef2f7;
+
+            text-align: center;
+
+            color: #475569;
+
+            font-size: 13px;
+
+            vertical-align: middle;
+        }
+
+
+        tbody tr:last-child td {
+
+            border-bottom: none;
+        }
+
+
+        tbody tr:hover {
+
+            background: #f8fafc;
+        }
+
+
+        /* ================= STUDENT ================= */
+
+        .student-name {
+
+            color: #172554;
+
+            font-weight: 600;
+        }
+
+
+        .student-email {
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= STATUS ================= */
+
+        .status {
+
+            display: inline-block;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .applied {
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .accepted {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .rejected {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+        }
+
+
+        .offered {
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+        }
+
+
+        /* ================= OFFER STATUS ================= */
+
+        .offer-status {
+
+            margin-top: 8px;
+
+            color: #475569;
+
+            font-size: 11px;
+
+        }
+
+
+        .offer-status .status {
+
+            margin-top: 5px;
+
+        }
+
+
+        /* ================= RESUME ================= */
+
+        .resume-btn {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            padding: 8px 11px;
+
+            border-radius: 6px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .resume-btn:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        .no-resume {
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= ACTION BUTTONS ================= */
+
+        .action-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .action-btn {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: #ffffff;
+
+            padding: 8px 11px;
+
+            border-radius: 6px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            border: none;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            white-space: nowrap;
+        }
+
+
+        /* ACCEPT */
+
+        .accept-btn {
+
+            background: #16a34a;
+        }
+
+
+        .accept-btn:hover {
+
+            background: #15803d;
+        }
+
+
+        /* REJECT */
+
+        .reject-btn {
+
+            background: #dc2626;
+        }
+
+
+        .reject-btn:hover {
+
+            background: #b91c1c;
+        }
+
+
+        /* OFFER */
+
+        .offer-btn {
+
+            background: #7c3aed;
+        }
+
+
+        .offer-btn:hover {
+
+            background: #6d28d9;
+        }
+
+
+        .no-action {
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .no-applicants {
+
+            text-align: center;
+
+            padding: 55px 20px;
+        }
+
+
+        .no-applicants h3 {
+
+            color: #172554;
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .no-applicants p {
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-top: 35px;
+
+            padding: 15px;
+        }
+
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding: 20px 12px;
+            }
+
+
+            .top-bar {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+
+            .back-btn {
+
+                width: 100%;
+
+                text-align: center;
+            }
+
+
+            .page-title {
+
+                font-size: 24px;
+            }
+
+
+            .job-details {
+
+                flex-direction: column;
+
+                gap: 7px;
+            }
+
+
+            .applicants-card {
+
+                padding: 18px 12px;
+            }
+
+
+            .applicants-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="top-bar">
+
+        <div class="brand">
+            JobPortal
+        </div>
+
+
+        <a href="{% url 'employer_dashboard' %}"
+           class="back-btn">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= TITLE ================= -->
+
+    <h1 class="page-title">
+        View Applicants
+    </h1>
+
+
+    <p class="page-description">
+        Review applications and manage your hiring process.
+    </p>
+
+
+    <!-- ================= JOB INFORMATION ================= -->
+
+    {% if job %}
+
+    <div class="job-info">
+
+        <h3>
+            {{ job.job_title }}
+        </h3>
+
+
+        <div class="job-details">
+
+            <span>
+
+                <strong>Company:</strong>
+
+                {{ job.company_name }}
+
+            </span>
+
+
+            <span>
+
+                <strong>Location:</strong>
+
+                {{ job.location }}
+
+            </span>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= APPLICANTS ================= -->
+
+    <div class="applicants-card">
+
+
+        <div class="applicants-header">
+
+            <h2>
+                Applicants
+            </h2>
+
+
+            {% if applications %}
+
+            <span class="applicant-count">
+
+                {{ applications|length }}
+                Applicant{{ applications|length|pluralize }}
+
+            </span>
+
+            {% endif %}
+
+        </div>
+
+
+        {% if applications %}
+
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>S.No</th>
+
+                    <th>Student</th>
+
+                    <th>Email</th>
+
+                    <th>Job Title</th>
+
+                    <th>Company</th>
+
+                    <th>Applied Date</th>
+
+                    <th>Resume</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for application in applications %}
+
+                <tr>
+
+
+                    <!-- S.NO -->
+
+                    <td>
+
+                        {{ forloop.counter }}
+
+                    </td>
+
+
+                    <!-- STUDENT -->
+
+                    <td>
+
+                        <div class="student-name">
+
+                            {{ application.student_name }}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- EMAIL -->
+
+                    <td>
+
+                        <div class="student-email">
+
+                            {{ application.student_email }}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- JOB -->
+
+                    <td>
+
+                        {{ application.job_title }}
+
+                    </td>
+
+
+                    <!-- COMPANY -->
+
+                    <td>
+
+                        {{ application.company_name }}
+
+                    </td>
+
+
+                    <!-- DATE -->
+
+                    <td>
+
+                        {{ application.applied_at|date:"d-m-Y" }}
+
+                    </td>
+
+
+                    <!-- RESUME -->
+
+                    <td>
+
+                        {% if application.resume %}
+
+                        <a href="{{ application.resume.url }}"
+                           target="_blank"
+                           class="resume-btn">
+
+                            View Resume
+
+                        </a>
+
+                        {% else %}
+
+                        <span class="no-resume">
+
+                            No Resume
+
+                        </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ================= STATUS ================= -->
+
+                    <td>
+
+
+                        {% if application.status == "Accepted" %}
+
+
+                        <span class="status accepted">
+
+                            Application Accepted
+
+                        </span>
+
+
+                        <!-- HIRING OFFER STATUS -->
+
+                        {% if application.hiring_offer %}
+
+                        <div class="offer-status">
+
+                            <div>
+                                Hiring Offer:
+                            </div>
+
+
+                            <!-- OFFERED -->
+
+                            {% if application.hiring_offer.status == "Offered" %}
+
+                            <span class="status offered">
+
+                                Pending
+
+                            </span>
+
+
+                            <!-- ACCEPTED -->
+
+                            {% elif application.hiring_offer.status == "Accepted" %}
+
+                            <span class="status accepted">
+
+                                Accepted
+
+                            </span>
+
+
+                            <!-- REJECTED -->
+
+                            {% elif application.hiring_offer.status == "Rejected" %}
+
+                            <span class="status rejected">
+
+                                Rejected
+
+                            </span>
+
+
+                            <!-- OTHER -->
+
+                            {% else %}
+
+                            <span class="status offered">
+
+                                {{ application.hiring_offer.status }}
+
+                            </span>
+
+                            {% endif %}
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <!-- APPLICATION REJECTED -->
+
+                        {% elif application.status == "Rejected" %}
+
+
+                        <span class="status rejected">
+
+                            Application Rejected
+
+                        </span>
+
+
+                        <!-- APPLICATION APPLIED -->
+
+                        {% else %}
+
+
+                        <span class="status applied">
+
+                            Applied
+
+                        </span>
+
+
+                        {% endif %}
+
+
+                    </td>
+
+
+                    <!-- ================= ACTION ================= -->
+
+                    <td>
+
+
+                        <div class="action-buttons">
+
+
+                            <!-- ================= APPLIED ================= -->
+
+                            {% if application.status == "Applied" %}
+
+
+                            <a href="{% url 'accept_application' application.id %}"
+                               class="action-btn accept-btn">
+
+                                Accept
+
+                            </a>
+
+
+                            <a href="{% url 'reject_application' application.id %}"
+                               class="action-btn reject-btn">
+
+                                Reject
+
+                            </a>
+
+
+                            <!-- ================= ACCEPTED ================= -->
+
+                            {% elif application.status == "Accepted" %}
+
+
+                            {% if application.hiring_offer %}
+
+
+                                <!-- OFFER SENT -->
+
+                                {% if application.hiring_offer.status == "Offered" %}
+
+                                <span class="status offered">
+
+                                    Waiting for Student
+
+                                </span>
+
+
+                                <!-- OFFER ACCEPTED -->
+
+                                {% elif application.hiring_offer.status == "Accepted" %}
+
+                                <span class="status accepted">
+
+                                    Offer Accepted
+
+                                </span>
+
+
+                                <!-- OFFER REJECTED -->
+
+                                {% elif application.hiring_offer.status == "Rejected" %}
+
+                                <span class="status rejected">
+
+                                    Offer Rejected
+
+                                </span>
+
+
+                                {% else %}
+
+                                <span class="status offered">
+
+                                    {{ application.hiring_offer.status }}
+
+                                </span>
+
+                                {% endif %}
+
+
+                            {% else %}
+
+
+                            <!-- SEND OFFER -->
+
+                            <a href="{% url 'send_hiring_offer' application.id %}"
+                               class="action-btn offer-btn">
+
+                                Send Hiring Offer
+
+                            </a>
+
+
+                            {% endif %}
+
+
+                            <!-- ================= REJECTED ================= -->
+
+                            {% elif application.status == "Rejected" %}
+
+
+                            <span class="no-action">
+
+                                No Action
+
+                            </span>
+
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ================= EMPTY ================= -->
+
+        <div class="no-applicants">
+
+            <h3>
+                No Applicants Yet
+            </h3>
+
+            <p>
+                No students have applied for this job yet.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 JobPortal | Employer Applicant Management
+
+</footer>
+
+
+</body>
+
+</html>

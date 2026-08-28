@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Applications</title>
+
+    {% load static %}
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8fc;
+            color: #172033;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            min-height: 68px;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #1d4ed8
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            color: white;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* ================= APPLICATION CARD ================= */
+
+        .applications-card {
+            background: white;
+
+            border-radius: 14px;
+
+            border: 1px solid #e8ecf2;
+
+            box-shadow:
+                0 6px 25px
+                rgba(0, 0, 0, 0.06);
+
+            overflow: hidden;
+        }
+
+        /* ================= TABLE ================= */
+
+        .applications-table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        .applications-table th {
+            background: #f8fafc;
+
+            color: #475569;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            padding: 16px;
+
+            text-align: left;
+
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .applications-table td {
+            padding: 17px 16px;
+
+            font-size: 14px;
+
+            color: #475569;
+
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .applications-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .applications-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .job-title {
+            color: #2563eb;
+
+            font-weight: 600;
+        }
+
+        .company {
+            color: #334155;
+
+            font-weight: 500;
+        }
+
+        /* ================= STATUS ================= */
+
+        .status {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .status-applied {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .status-accepted {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* ================= RESUME ================= */
+
+        .resume-btn {
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .resume-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty-message {
+            padding: 50px 20px;
+
+            text-align: center;
+
+            color: #64748b;
+        }
+
+        .empty-message h2 {
+            margin-bottom: 10px;
+
+            color: #334155;
+        }
+
+        .browse-btn {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            padding: 11px 22px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .browse-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                flex-direction: column;
+
+                padding: 18px;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 15px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .applications-card {
+                overflow-x: auto;
+            }
+
+            .applications-table {
+                min-width: 750px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <h2>
+        Job Portal
+    </h2>
+
+    <div class="nav-links">
+
+        <a href="{% url 'student_dashboard' %}">
+            Home
+        </a>
+
+        <a href="{% url 'student_profile' %}">
+            My Profile
+        </a>
+
+        <a href="{% url 'my_applications' %}">
+            My Applications
+        </a>
+
+        <a href="{% url 'student_logout' %}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <h1>
+            My Applications
+        </h1>
+
+        <p>
+            Track the jobs and internships you have applied for.
+        </p>
+
+    </div>
+
+
+    <div class="applications-card">
+
+
+        {% if applications %}
+
+
+        <table class="applications-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Job Title
+                    </th>
+
+                    <th>
+                        Company
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Resume
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for application in applications %}
+
+
+                <tr>
+
+
+                    <td>
+
+                        <span class="job-title">
+
+                            {{ application.job_title }}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="company">
+
+                            {{ application.company_name }}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        {{ application.student_email }}
+
+                    </td>
+
+
+                    <td>
+
+
+                        {% if application.status == "Accepted" %}
+
+                            <span class="status status-accepted">
+
+                                ✓ Accepted
+
+                            </span>
+
+
+                        {% elif application.status == "Rejected" %}
+
+                            <span class="status status-rejected">
+
+                                ✕ Rejected
+
+                            </span>
+
+
+                        {% else %}
+
+                            <span class="status status-applied">
+
+                                Applied
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </td>
+
+
+                    <td>
+
+
+                        {% if application.resume %}
+
+                            <a
+                                href="{{ application.resume.url }}"
+                                target="_blank"
+                                class="resume-btn">
+
+                                View Resume
+
+                            </a>
+
+                        {% else %}
+
+                            <span>
+                                No Resume
+                            </span>
+
+                        {% endif %}
+
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+            </tbody>
+
+
+        </table>
+
+
+        {% else %}
+
+
+        <div class="empty-message">
+
+            <h2>
+                No Applications Yet
+            </h2>
+
+            <p>
+                You haven't applied for any jobs or internships yet.
+            </p>
+
+            <a
+                href="{% url 'student_dashboard' %}"
+                class="browse-btn">
+
+                Browse Jobs
+
+            </a>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Delete Job | JobPortal</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* ================= RESET ================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ================= BODY ================= */
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe,
+                    #f8fafc
+                );
+
+            padding: 20px;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .delete-container {
+
+            width: 100%;
+
+            max-width: 500px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .delete-card {
+
+            background: #ffffff;
+
+            padding: 40px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15, 23, 42, 0.12);
+
+            text-align: center;
+        }
+
+
+        /* ================= ICON ================= */
+
+        .delete-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #fef2f2;
+
+            color: #dc2626;
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .delete-card h1 {
+
+            color: #172554;
+
+            font-size: 25px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* ================= TEXT ================= */
+
+        .delete-message {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 10px;
+        }
+
+
+        .job-name {
+
+            color: #172033;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            margin-bottom: 25px;
+
+            word-break: break-word;
+        }
+
+
+        .warning {
+
+            background: #fff7ed;
+
+            color: #9a3412;
+
+            border: 1px solid #fed7aa;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            margin-bottom: 25px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= BUTTONS ================= */
+
+        .button-group {
+
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: center;
+        }
+
+
+        .delete-btn,
+        .cancel-btn {
+
+            min-height: 48px;
+
+            padding: 0 20px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= DELETE ================= */
+
+        .delete-btn {
+
+            flex: 1;
+
+            border: none;
+
+            background: #dc2626;
+
+            color: #ffffff;
+        }
+
+
+        .delete-btn:hover {
+
+            background: #b91c1c;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 6px 15px
+                rgba(220, 38, 38, 0.20);
+        }
+
+
+        /* ================= CANCEL ================= */
+
+        .cancel-btn {
+
+            flex: 1;
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .cancel-btn:hover {
+
+            background: #e2e8f0;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 500px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+
+            .delete-card {
+
+                padding: 30px 22px;
+
+                border-radius: 14px;
+            }
+
+
+            .delete-card h1 {
+
+                font-size: 22px;
+            }
+
+
+            .button-group {
+
+                flex-direction: column;
+            }
+
+
+            .delete-btn,
+            .cancel-btn {
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="delete-container">
+
+
+        <div class="delete-card">
+
+
+            <!-- ================= ICON ================= -->
+
+            <div class="delete-icon">
+                !
+            </div>
+
+
+            <!-- ================= TITLE ================= -->
+
+            <h1>
+                Delete Job?
+            </h1>
+
+
+            <!-- ================= MESSAGE ================= -->
+
+            <p class="delete-message">
+
+                Are you sure you want to delete this job?
+
+            </p>
+
+
+            <div class="job-name">
+
+                {{ job.job_title }}
+
+            </div>
+
+
+            <!-- ================= WARNING ================= -->
+
+            <div class="warning">
+
+                This action cannot be undone.
+                The job posting will be permanently deleted.
+
+            </div>
+
+
+            <!-- ================= FORM ================= -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <div class="button-group">
+
+
+                    <!-- CANCEL -->
+
+                    <a href="{% url 'employer_dashboard' %}"
+                       class="cancel-btn">
+
+                        Cancel
+
+                    </a>
+
+
+                    <!-- DELETE -->
+
+                    <button
+                        type="submit"
+                        class="delete-btn">
+
+                        Yes, Delete Job
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

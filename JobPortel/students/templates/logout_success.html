@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Logout Successful | Job Portal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #f5f7fb;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            width: 100%;
+
+            min-height: 68px;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #1d4ed8
+            );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 6%;
+        }
+
+
+        .navbar h2 {
+
+            font-size: 22px;
+
+            margin: 0;
+        }
+
+
+        .navbar p {
+
+            font-size: 13px;
+
+            opacity: 0.9;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .logout-container {
+
+            flex: 1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px 20px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .logout-card {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            background: white;
+
+            padding: 45px 35px;
+
+            text-align: center;
+
+            border-radius: 16px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* ================= ICON ================= */
+
+        .success-icon {
+
+            width: 85px;
+
+            height: 85px;
+
+            margin: 0 auto 22px;
+
+            border-radius: 50%;
+
+            background: #dcfce7;
+
+            color: #16a34a;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 42px;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .logout-card h1 {
+
+            color: #172033;
+
+            font-size: 28px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .logout-card p {
+
+            color: #64748b;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* ================= LOGIN BUTTON ================= */
+
+        .login-btn {
+
+            display: inline-block;
+
+            padding: 13px 28px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .login-btn:hover {
+
+            background: #1d4ed8;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ================= HOME BUTTON ================= */
+
+        .home-btn {
+
+            display: inline-block;
+
+            margin-left: 10px;
+
+            padding: 13px 28px;
+
+            background: #e5e7eb;
+
+            color: #334155;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .home-btn:hover {
+
+            background: #d1d5db;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+
+            text-align: center;
+
+            padding: 18px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                justify-content: center;
+
+                gap: 5px;
+
+                padding: 18px;
+            }
+
+
+            .logout-card {
+
+                padding: 35px 22px;
+            }
+
+
+            .logout-card h1 {
+
+                font-size: 24px;
+            }
+
+
+            .success-icon {
+
+                width: 75px;
+
+                height: 75px;
+
+                font-size: 36px;
+            }
+
+
+            .login-btn,
+            .home-btn {
+
+                display: block;
+
+                width: 100%;
+
+                margin: 10px 0 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <h2>
+        Job Portal
+    </h2>
+
+    <p>
+        Student Portal
+    </p>
+
+</nav>
+
+
+<!-- ================= LOGOUT CONTENT ================= -->
+
+<div class="logout-container">
+
+
+    <div class="logout-card">
+
+
+        <!-- SUCCESS ICON -->
+
+        <div class="success-icon">
+
+            ✓
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+
+            Logout Successful!
+
+        </h1>
+
+
+        <!-- MESSAGE -->
+
+        <p>
+
+            You have been logged out successfully.
+
+            <br>
+
+            Thank you for using the Job Portal.
+
+        </p>
+
+
+        <!-- BUTTONS -->
+
+        <a href="{% url 'student_login' %}"
+           class="login-btn">
+
+            🔐 Login Again
+
+        </a>
+
+
+        <a href="{% url 'student_login' %}"
+           class="home-btn">
+
+            🏠 Go to Login
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    © 2026 Job Portal. All rights reserved.
+
+</footer>
+
+
+</body>
+
+</html>

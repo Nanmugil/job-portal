@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Job portal</title>
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+   <nav>
+      <div class="logo">
+         <h2>JobPortal</h2>
+      </div>
+      <ul>
+         <li><a href="#">Home</a></li>
+         <li><a href="#">Jobs</a></li>
+         <li><a href="#">Students</a></li>
+         <li><a href="#">Employers</a></li>
+         <li><a href="#">Login</a></li>
+      </ul>
+   </nav>
+   <section class="hero">
+      <h1>Find Your Dream Job Today</h1>
+      <p>Connecting Students, Job Seekers, and Employers on One Platform.</p>
+      <div class="hero-buttons">
+      <a href="#" class="btn">Students Login</a>
+      <a href="#" class="btn btn-secondary">Employer Login</a>
+      </div>
+   </section>
+   <section class="search-section">
+      <h2>Search Jobs</h2>
+      <div class="search-box">
+         <input  type="text"placeholder="job title or keyword">
+         <input type="text" placeholder="Location">
+         <button class="search-btn">Search</button>
+      </div>
+      <section class="featured-jobs">
+      <h2>Featured Jobs</h2>
+      <div class="job container">
+      <div class="job-card">
+         <h3>Python full stack Developer</h3>
+         <p><strong>Company:</strong> TechNova Solutions</p>
+         <p><strong>Location:</strong>Chennai</p>
+         <p><strong>Experience:</strong>Fresher</p>
+         <button>Apply Now</button>
+      </div>
+       <div class="job-card">
+         <h3>Frontend Developer</h3>
+         <p><strong>Company:</strong> PixelSoft</p>
+         <p><strong>Location:</strong>Bangalore</p>
+         <p><strong>Experience:</strong>1+ Years</p>
+         <button>Apply Now</button>
+      </div>
+       <div class="job-card">
+         <h3>Data Analyst</h3>
+         <p><strong>Company:</strong>DataSphere</p>
+         <p><strong>Location:</strong>hydrabad</p>
+         <p><strong>Experience:</strong>Fresher</p>
+         <button>Apply Now</button>
+      </div>
+   </div>
+</section>
+<section class="why-us">
+
+    <h2>Why Choose Our Job Portal?</h2>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <h3>🎓 Student Friendly</h3>
+            <p>Easy job search and one-click application for freshers and students.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🏢 Trusted Employers</h3>
+            <p>Verified companies post genuine job opportunities every day.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚡ Fast Hiring</h3>
+            <p>Apply quickly and receive interview opportunities faster.</p>
+        </div>
+
+    </div>
+
+</section>
+<section class="statistics">
+
+    <div class="stat-box">
+        <h2>10,000+</h2>
+        <p>Jobs Available</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>5,000+</h2>
+        <p>Students Registered</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>800+</h2>
+        <p>Companies</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>95%</h2>
+        <p>Hiring Success</p>
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-about">
+            <h3>JobPortal</h3>
+            <p>Connecting students, job seekers, and employers through a modern hiring platform.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+
+            <a href="#">Home</a>
+            <a href="#">Jobs</a>
+            <a href="#">Student Login</a>
+            <a href="#">Employer Login</a>
+
+        </div>
+
+        <div class="footer-contact">
+
+            <h3>Contact</h3>
+
+            <p>Email : support@jobportal.com</p>
+
+            <p>Phone : +91 9876543210</p>
+
+            <p>Location : Coimbatore, Tamil Nadu</p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p class="copyright">
+        © 2026 JobPortal. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ job.job_title }} | Job Details</title>
+
+    {% load static %}
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8fc;
+            color: #172033;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            width: 100%;
+            min-height: 68px;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #1d4ed8
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            color: white;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* ================= MAIN ================= */
+
+        .details-container {
+            width: 90%;
+            max-width: 950px;
+
+            margin: 45px auto;
+        }
+
+        /* ================= CARD ================= */
+
+        .details-card {
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 16px;
+
+            border: 1px solid #e8ecf2;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, 0.06);
+        }
+
+        /* ================= HEADER ================= */
+
+        .job-header {
+            border-bottom: 1px solid #edf0f5;
+
+            padding-bottom: 25px;
+
+            margin-bottom: 25px;
+        }
+
+        .job-header h1 {
+            font-size: 30px;
+
+            color: #2563eb;
+
+            margin-bottom: 12px;
+        }
+
+        .job-type {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        /* ================= INFORMATION ================= */
+
+        .job-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: #f8fafc;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            border: 1px solid #edf0f5;
+        }
+
+        .info-box span {
+            display: block;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+        .info-box strong {
+            color: #172033;
+
+            font-size: 15px;
+        }
+
+        /* ================= DESCRIPTION ================= */
+
+        .description {
+            margin-bottom: 30px;
+        }
+
+        .description h2 {
+            font-size: 20px;
+
+            margin-bottom: 12px;
+        }
+
+        .description p {
+            color: #64748b;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+        }
+
+        /* ================= SKILLS ================= */
+
+        .skills {
+            margin-bottom: 30px;
+        }
+
+        .skills h2 {
+            font-size: 20px;
+
+            margin-bottom: 12px;
+        }
+
+        .skills p {
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        /* ================= APPLY ================= */
+
+        .apply-section {
+            border-top: 1px solid #edf0f5;
+
+            padding-top: 25px;
+
+            display: flex;
+
+            justify-content: flex-end;
+        }
+
+        .apply-btn {
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 12px 30px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= ALREADY APPLIED ================= */
+
+        .already-applied {
+            display: inline-block;
+
+            padding: 12px 25px;
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        /* ================= BACK ================= */
+
+        .back-link {
+            display: inline-block;
+
+            margin-bottom: 18px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+
+                padding: 18px;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 15px;
+            }
+
+            .details-container {
+                width: 94%;
+
+                margin: 25px auto;
+            }
+
+            .details-card {
+                padding: 22px;
+            }
+
+            .job-header h1 {
+                font-size: 24px;
+            }
+
+            .job-info {
+                grid-template-columns: 1fr;
+            }
+
+            .apply-section {
+                justify-content: stretch;
+            }
+
+            .apply-btn,
+            .already-applied {
+                width: 100%;
+
+                text-align: center;
+            }
+        }
+
+        .message-container {
+    position: fixed;
+
+    top: 85px;
+
+    right: 25px;
+
+    z-index: 9999;
+}
+
+.success-popup {
+    background: #16a34a;
+
+    color: white;
+
+    padding: 14px 22px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.15);
+
+    animation: popup 0.3s ease;
+}
+
+@keyframes popup {
+
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+    {% if messages %}
+
+    <div class="message-container">
+
+        {% for message in messages %}
+
+            <div class="success-popup">
+
+                ✓ {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <h2>
+        Job Portal
+    </h2>
+
+    <div class="nav-links">
+
+        <a href="{% url 'student_dashboard' %}">
+            Home
+        </a>
+
+        <a href="{% url 'student_profile' %}">
+            My Profile
+        </a>
+
+        <a href="{% url 'my_applications' %}">
+            My Applications
+        </a>
+
+        <a href="{% url 'student_logout' %}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="details-container">
+
+
+    <a
+        href="{% url 'student_dashboard' %}"
+        class="back-link">
+
+        ← Back to Dashboard
+
+    </a>
+
+
+    <div class="details-card">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="job-header">
+
+            <h1>
+                {{ job.job_title }}
+            </h1>
+
+            {% if job.job_type == "Internship" %}
+
+                <span class="job-type">
+                    Internship
+                </span>
+
+            {% else %}
+
+                <span class="job-type">
+                    Job
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ================= JOB INFORMATION ================= -->
+
+        <div class="job-info">
+
+
+            <div class="info-box">
+
+                <span>
+                    Company
+                </span>
+
+                <strong>
+                    🏢 {{ job.company_name }}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Location
+                </span>
+
+                <strong>
+                    📍 {{ job.location }}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Salary / Stipend
+                </span>
+
+                <strong>
+                    💰 {{ job.salary }}
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Job Type
+                </span>
+
+                <strong>
+                    {{ job.job_type }}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= DESCRIPTION ================= -->
+
+        <div class="description">
+
+            <h2>
+                Job Description
+            </h2>
+
+            <p>
+                {{ job.description|default:"No job description provided." }}
+            </p>
+
+        </div>
+
+
+        <!-- ================= SKILLS ================= -->
+
+        <div class="skills">
+
+            <h2>
+                Required Skills
+            </h2>
+
+            <p>
+                🛠 {{ job.skills }}
+            </p>
+
+        </div>
+
+
+        <!-- ================= APPLY ================= -->
+
+        <div class="apply-section">
+
+
+            {% if already_applied %}
+
+                <span class="already-applied">
+                    ✓ Already Applied
+                </span>
+
+
+            {% else %}
+
+                <form
+                    method="POST"
+                    action="{% url 'apply_job' job.id %}">
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit">
+
+                        Apply Now
+
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

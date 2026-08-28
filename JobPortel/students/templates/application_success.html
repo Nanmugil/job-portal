@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Application Submitted | Job Portal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8fc;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #172033;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .success-container {
+            width: 90%;
+            max-width: 550px;
+        }
+
+        /* ================= CARD ================= */
+
+        .success-card {
+            background: white;
+
+            padding: 45px 35px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            border: 1px solid #e8ecf2;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        /* ================= ICON ================= */
+
+        .success-icon {
+            width: 85px;
+            height: 85px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+
+            background: #dcfce7;
+
+            color: #16a34a;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+
+            font-weight: bold;
+        }
+
+        /* ================= TITLE ================= */
+
+        .success-card h1 {
+            color: #15803d;
+
+            font-size: 27px;
+
+            margin-bottom: 15px;
+        }
+
+        .success-card p {
+            color: #64748b;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 10px;
+        }
+
+        /* ================= INFO ================= */
+
+        .info-box {
+            margin: 25px 0;
+
+            padding: 15px;
+
+            background: #f0fdf4;
+
+            border: 1px solid #bbf7d0;
+
+            border-radius: 9px;
+
+            color: #166534;
+
+            font-size: 14px;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .dashboard-btn {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 13px 28px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .dashboard-btn:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-1px);
+        }
+
+        /* ================= APPLICATION BUTTON ================= */
+
+        .applications-btn {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            margin-left: 8px;
+
+            padding: 13px 28px;
+
+            background: #64748b;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .applications-btn:hover {
+            background: #475569;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            .success-container {
+                width: 94%;
+            }
+
+            .success-card {
+                padding: 35px 22px;
+            }
+
+            .success-card h1 {
+                font-size: 23px;
+            }
+
+            .dashboard-btn,
+            .applications-btn {
+                display: block;
+
+                width: 100%;
+
+                margin: 10px 0 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="success-container">
+
+
+    <div class="success-card">
+
+
+        <!-- SUCCESS ICON -->
+
+        <div class="success-icon">
+
+            ✓
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            Application Submitted!
+        </h1>
+
+
+        <!-- MESSAGE -->
+
+        <p>
+            Your job application has been submitted successfully.
+        </p>
+
+
+        <p>
+            The employer will review your application.
+        </p>
+
+
+        <!-- INFO -->
+
+        <div class="info-box">
+
+            📩 You can track your application status
+            from <strong>My Applications</strong>.
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <a
+            href="{% url 'student_dashboard' %}"
+            class="dashboard-btn">
+
+            🏠 Back to Dashboard
+
+        </a>
+
+
+        <a
+            href="{% url 'my_applications' %}"
+            class="applications-btn">
+
+            📋 My Applications
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

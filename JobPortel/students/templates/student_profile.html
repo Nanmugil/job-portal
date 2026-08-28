@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | JobPortal</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8fc;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            min-height: 68px;
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #1d4ed8
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            color: white;
+
+            box-shadow:
+                0 3px 12px
+                rgba(15, 23, 42, 0.15);
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 92%;
+            max-width: 1000px;
+            margin: 40px auto 60px;
+        }
+
+        /* ================= HEADER ================= */
+
+        .page-header {
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+            border: 1px solid #e8ecf2;
+
+            box-shadow:
+                0 6px 25px
+                rgba(0, 0, 0, 0.05);
+
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            color: #172033;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* ================= PROFILE CARD ================= */
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+
+            border: 1px solid #e8ecf2;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, 0.06);
+        }
+
+        /* ================= PROFILE TOP ================= */
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .profile-icon {
+            width: 75px;
+            height: 75px;
+
+            border-radius: 50%;
+
+            background: #dbeafe;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .profile-top h2 {
+            font-size: 24px;
+            color: #172554;
+            margin-bottom: 6px;
+        }
+
+        .profile-top p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* ================= PROFILE GRID ================= */
+
+        .profile-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+        }
+
+        .profile-item {
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 16px;
+        }
+
+        .profile-label {
+            display: block;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+
+            text-transform: uppercase;
+        }
+
+        .profile-value {
+            display: block;
+
+            color: #172033;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            word-break: break-word;
+        }
+
+        /* ================= SKILLS ================= */
+
+        .skills-box {
+            grid-column: 1 / -1;
+        }
+
+        .skills {
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        /* ================= RESUME ================= */
+
+        .resume-box {
+            grid-column: 1 / -1;
+        }
+
+        .resume-link {
+            display: inline-block;
+
+            margin-top: 5px;
+
+            padding: 9px 15px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .resume-link:hover {
+            background: #1d4ed8;
+        }
+
+        .no-resume {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .profile-actions {
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 28px;
+
+            padding-top: 22px;
+
+            border-top: 1px solid #eef2f7;
+        }
+
+        .btn {
+            flex: 1;
+
+            padding: 12px 18px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .edit-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .back-btn {
+            background: #f1f5f9;
+            color: #475569;
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #172554;
+            color: white;
+
+            text-align: center;
+
+            padding: 18px;
+
+            font-size: 12px;
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                padding: 18px;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 25px auto 45px;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-box,
+            .resume-box {
+                grid-column: auto;
+            }
+
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 500px) {
+
+            .page-header {
+                padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+            .profile-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <h2>
+        JobPortal
+    </h2>
+
+    <div class="nav-links">
+
+        <a href="{% url 'student_dashboard' %}">
+            Home
+        </a>
+
+        <a href="{% url 'student_profile' %}">
+            My Profile
+        </a>
+
+        <a href="{% url 'my_applications' %}">
+            My Applications
+        </a>
+
+        <a href="{% url 'my_hiring_offers' %}">
+            Hiring Offers
+        </a>
+
+        <a href="{% url 'student_logout' %}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <div class="page-header">
+
+        <h1>
+            👤 My Profile
+        </h1>
+
+        <p>
+            View your personal, education and professional details.
+        </p>
+
+    </div>
+
+
+    <!-- ================= PROFILE CARD ================= -->
+
+    <div class="profile-card">
+
+
+        <!-- ================= PROFILE TOP ================= -->
+
+        <div class="profile-top">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <div>
+
+                <h2>
+                    {{ student.full_name }}
+                </h2>
+
+                <p>
+                    Student Profile
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PROFILE DETAILS ================= -->
+
+        <div class="profile-grid">
+
+
+            <!-- NAME -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Full Name
+                </span>
+
+                <strong class="profile-value">
+                    {{ student.full_name }}
+                </strong>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Email
+                </span>
+
+                <strong class="profile-value">
+                    {{ student.email }}
+                </strong>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Phone
+                </span>
+
+                <strong class="profile-value">
+                    {{ student.phone|default:"Not provided" }}
+                </strong>
+
+            </div>
+
+
+            <!-- COURSE -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Course
+                </span>
+
+                <strong class="profile-value">
+                    {{ student.course|default:"Not provided" }}
+                </strong>
+
+            </div>
+
+
+            <!-- QUALIFICATION -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Qualification
+                </span>
+
+                <strong class="profile-value">
+                    {{ student.qualification|default:"Not provided" }}
+                </strong>
+
+            </div>
+
+
+            <!-- LOCATION -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Location
+                </span>
+
+                <strong class="profile-value">
+                    {{ student.location|default:"Not provided" }}
+                </strong>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="profile-item skills-box">
+
+                <span class="profile-label">
+                    Skills
+                </span>
+
+                <strong class="profile-value skills">
+                    {{ student.skills|default:"Not provided" }}
+                </strong>
+
+            </div>
+
+
+            <!-- RESUME -->
+
+            <div class="profile-item resume-box">
+
+                <span class="profile-label">
+                    Resume
+                </span>
+
+
+                {% if student.resume %}
+
+                    <a href="{{ student.resume.url }}"
+                       target="_blank"
+                       class="resume-link">
+
+                        📄 View Resume
+
+                    </a>
+
+                {% else %}
+
+                    <span class="no-resume">
+                        No resume uploaded
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= ACTION BUTTONS ================= -->
+
+        <div class="profile-actions">
+
+            <a href="{% url 'edit_student_profile' %}"
+               class="btn edit-btn">
+
+                ✏️ Edit Profile
+
+            </a>
+
+
+            <a href="{% url 'student_dashboard' %}"
+               class="btn back-btn">
+
+                ← Back to Dashboard
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026 JobPortal | Student Profile
+
+</footer>
+
+
+</body>
+
+</html>

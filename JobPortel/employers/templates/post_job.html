@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Post Job | JobPortal</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* ================= RESET ================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ================= BODY ================= */
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe,
+                    #f8fafc
+                );
+
+            color: #172033;
+
+            padding: 30px 20px;
+        }
+
+
+        /* ================= PAGE CONTAINER ================= */
+
+        .page-container {
+
+            width: 100%;
+
+            max-width: 750px;
+
+            margin: 0 auto;
+        }
+
+
+        /* ================= TOP BAR ================= */
+
+        .top-bar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .brand {
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            color: #2563eb;
+        }
+
+
+        .back-link {
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            padding: 9px 13px;
+
+            border-radius: 7px;
+
+            background: #ffffff;
+
+            border: 1px solid #dbe3ef;
+
+            transition: 0.2s;
+        }
+
+
+        .back-link:hover {
+
+            background: #eff6ff;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .job-card {
+
+            width: 100%;
+
+            background: #ffffff;
+
+            padding: 40px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15, 23, 42, 0.10);
+
+            box-sizing: border-box;
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .job-card h1 {
+
+            text-align: center;
+
+            color: #172554;
+
+            font-size: 27px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .description {
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+        .error-message {
+
+            width: 100%;
+
+            background: #fef2f2;
+
+            color: #dc2626;
+
+            border: 1px solid #fecaca;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .success-message {
+
+            width: 100%;
+
+            background: #f0fdf4;
+
+            color: #15803d;
+
+            border: 1px solid #bbf7d0;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .job-form {
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+
+            box-sizing: border-box;
+        }
+
+
+        /* ================= FORM GROUP ================= */
+
+        .form-group {
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+            box-sizing: border-box;
+        }
+
+
+        .form-group label {
+
+            color: #334155;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* ================= INPUT ================= */
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            max-width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #dbe1ea;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            color: #172033;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 14px;
+
+            box-sizing: border-box;
+
+            transition: 0.2s;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            height: 48px;
+        }
+
+
+        .form-group textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= PLACEHOLDER ================= */
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+
+            color: #94a3b8;
+        }
+
+
+        /* ================= FOCUS ================= */
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.10);
+        }
+
+
+        /* ================= TWO COLUMN ================= */
+
+        .form-row {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        /* ================= POST BUTTON ================= */
+
+        .post-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .post-btn:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(37, 99, 235, 0.25);
+        }
+
+
+        .post-btn:active {
+
+            transform: translateY(0);
+        }
+
+
+        /* ================= NOTE ================= */
+
+        .form-note {
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 20px 15px;
+            }
+
+
+            .top-bar {
+
+                margin-bottom: 15px;
+            }
+
+
+            .brand {
+
+                font-size: 22px;
+            }
+
+
+            .job-card {
+
+                padding: 28px 22px;
+
+                border-radius: 14px;
+            }
+
+
+            .job-card h1 {
+
+                font-size: 23px;
+            }
+
+
+            .description {
+
+                font-size: 12px;
+
+                margin-bottom: 25px;
+            }
+
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+            }
+
+
+            .back-link {
+
+                font-size: 12px;
+
+                padding: 8px 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= PAGE ================= -->
+
+    <div class="page-container">
+
+
+        <!-- ================= TOP BAR ================= -->
+
+        <div class="top-bar">
+
+            <div class="brand">
+                JobPortal
+            </div>
+
+
+            <a href="{% url 'employer_dashboard' %}"
+               class="back-link">
+
+                ← Dashboard
+
+            </a>
+
+        </div>
+
+
+        <!-- ================= CARD ================= -->
+
+        <div class="job-card">
+
+
+            <h1>
+                Post a New Job
+            </h1>
+
+
+            <p class="description">
+                Create a job or internship opportunity and
+                connect with talented students.
+            </p>
+
+
+            <!-- ================= FORM ================= -->
+
+            <form method="POST"
+                  class="job-form">
+
+                {% csrf_token %}
+
+
+                <!-- JOB TITLE -->
+
+                <div class="form-group">
+
+                    <label for="job_title">
+                        Job Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="job_title"
+                        name="job_title"
+                        placeholder="Example: Python Developer"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- JOB TYPE -->
+
+                <div class="form-group">
+
+                    <label for="job_type">
+                        Job Type
+                    </label>
+
+                    <select
+                        id="job_type"
+                        name="job_type"
+                        required>
+
+                        <option value="Job">
+                            Job
+                        </option>
+
+                        <option value="Internship">
+                            Internship
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- COMPANY NAME -->
+
+                <div class="form-group">
+
+                    <label for="company_name">
+                        Company Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company_name"
+                        name="company_name"
+                        placeholder="Enter company name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Example: Chennai"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SALARY + EXPERIENCE -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="salary">
+                            Salary
+                        </label>
+
+                        <input
+                            type="text"
+                            id="salary"
+                            name="salary"
+                            placeholder="Example: ₹4 LPA"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Experience
+                        </label>
+
+                        <input
+                            type="text"
+                            id="experience"
+                            name="experience"
+                            placeholder="Example: 0-2 Years"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SKILLS -->
+
+                <div class="form-group">
+
+                    <label for="skills">
+                        Required Skills
+                    </label>
+
+                    <textarea
+                        id="skills"
+                        name="skills"
+                        placeholder="Example: Python, Django, HTML, CSS, SQL"
+                    ></textarea>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="post-btn">
+
+                    Post Job
+
+                </button>
+
+
+                <p class="form-note">
+
+                    Make sure all job details are accurate before posting.
+
+                </p>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

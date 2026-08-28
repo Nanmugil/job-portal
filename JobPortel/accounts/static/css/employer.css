@@ -1,0 +1,108 @@
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+}
+
+/* Navbar */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#0d47a1;
+    padding:15px 40px;
+}
+
+.navbar h2{
+    color:white;
+    margin:0;
+}
+
+.navbar div{
+    display:flex;
+    gap:20px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Dashboard */
+.dashboard-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    width:90%;
+    margin:40px auto;
+}
+
+.welcome{
+    width:35%;
+}
+
+.welcome h2{
+    margin-bottom:20px;
+}
+
+.welcome p{
+    margin:10px 0;
+}
+
+/* Cards */
+.employer-dashboard-cards{
+    width:65%;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+}
+
+.employer-card{
+    width:260px;
+    background:#fff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+    text-align:center;
+}
+
+.employer-card h3{
+    margin-bottom:20px;
+}
+
+.employer-card h1{
+    color:#0d6efd;
+    font-size:40px;
+}
+
+.welcome{
+    background:#fff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:#fff;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+table th{
+    background:#0d47a1;
+    color:#fff;
+    padding:12px;
+}
+
+table td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+table tr:nth-child(even){
+    background:#f5f5f5;
+}

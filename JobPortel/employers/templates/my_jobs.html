@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Jobs | JobPortal</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* ================= RESET ================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ================= BODY ================= */
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe,
+                    #f8fafc
+                );
+
+            color: #172033;
+
+            padding: 30px 20px;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .page-container {
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            margin: 0 auto;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .page-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 28px;
+        }
+
+
+        .brand {
+
+            color: #2563eb;
+
+            font-size: 26px;
+
+            font-weight: 700;
+        }
+
+
+        .header-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+        }
+
+
+        .header-btn {
+
+            display: inline-block;
+
+            padding: 10px 14px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .dashboard-btn {
+
+            color: #2563eb;
+
+            background: #ffffff;
+
+            border: 1px solid #dbe3ef;
+        }
+
+
+        .dashboard-btn:hover {
+
+            background: #eff6ff;
+        }
+
+
+        .post-btn {
+
+            color: #ffffff;
+
+            background: #2563eb;
+        }
+
+
+        .post-btn:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .page-title {
+
+            margin-bottom: 8px;
+
+            color: #172554;
+
+            font-size: 28px;
+        }
+
+
+        .page-description {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 28px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= JOB GRID ================= */
+
+        .jobs-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* ================= JOB CARD ================= */
+
+        .job-card {
+
+            background: #ffffff;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 5px 18px
+                rgba(15, 23, 42, 0.07);
+
+            transition: 0.2s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .job-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 28px
+                rgba(15, 23, 42, 0.11);
+        }
+
+
+        .job-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 4px;
+
+            height: 100%;
+
+            background: #2563eb;
+        }
+
+
+        /* ================= JOB TITLE ================= */
+
+        .job-title {
+
+            color: #172554;
+
+            font-size: 20px;
+
+            margin-bottom: 14px;
+
+            padding-left: 3px;
+        }
+
+
+        /* ================= JOB TYPE ================= */
+
+        .job-type {
+
+            display: inline-block;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 16px;
+        }
+
+
+        /* ================= JOB INFO ================= */
+
+        .job-info {
+
+            border-top: 1px solid #eef2f7;
+
+            padding-top: 14px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .job-info p {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin: 0;
+        }
+
+
+        .job-info strong {
+
+            color: #334155;
+        }
+
+
+        /* ================= BUTTON AREA ================= */
+
+        .job-actions {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 19px;
+        }
+
+
+        .action-btn {
+
+            display: inline-block;
+
+            padding: 9px 12px;
+
+            border-radius: 7px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .edit-btn {
+
+            background: #2563eb;
+        }
+
+
+        .edit-btn:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        .delete-btn {
+
+            background: #dc2626;
+        }
+
+
+        .delete-btn:hover {
+
+            background: #b91c1c;
+        }
+
+
+        .applicants-btn {
+
+            background: #059669;
+        }
+
+
+        .applicants-btn:hover {
+
+            background: #047857;
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .empty-card {
+
+            background: #ffffff;
+
+            padding: 50px 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 5px 18px
+                rgba(15, 23, 42, 0.06);
+
+            text-align: center;
+        }
+
+
+        .empty-card h3 {
+
+            color: #172554;
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty-card p {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .empty-post-btn {
+
+            display: inline-block;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            padding: 10px 17px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .empty-post-btn:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            margin-top: 45px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            padding: 20px;
+        }
+
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 850px) {
+
+            .jobs-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 20px 15px;
+            }
+
+
+            .page-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+
+            .header-actions {
+
+                width: 100%;
+            }
+
+
+            .header-btn {
+
+                flex: 1;
+
+                text-align: center;
+            }
+
+
+            .page-title {
+
+                font-size: 23px;
+            }
+
+
+            .page-description {
+
+                font-size: 13px;
+            }
+
+
+            .job-card {
+
+                padding: 21px;
+            }
+
+
+            .job-title {
+
+                font-size: 18px;
+            }
+
+
+            .job-actions {
+
+                flex-direction: column;
+            }
+
+
+            .action-btn {
+
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="page-container">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="page-header">
+
+            <div class="brand">
+                JobPortal
+            </div>
+
+
+            <div class="header-actions">
+
+                <a href="{% url 'employer_dashboard' %}"
+                   class="header-btn dashboard-btn">
+
+                    ← Dashboard
+
+                </a>
+
+
+                <a href="{% url 'post_job' %}"
+                   class="header-btn post-btn">
+
+                    + Post Job
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= TITLE ================= -->
+
+        <h1 class="page-title">
+            My Posted Jobs
+        </h1>
+
+
+        <p class="page-description">
+            Manage your posted jobs and internships,
+            edit job details, and view applicants.
+        </p>
+
+
+        <!-- ================= JOBS ================= -->
+
+        {% if jobs %}
+
+
+        <div class="jobs-grid">
+
+
+            {% for job in jobs %}
+
+
+            <div class="job-card">
+
+
+                <!-- JOB TITLE -->
+
+                <h2 class="job-title">
+                    {{ job.job_title }}
+                </h2>
+
+
+                <!-- JOB TYPE -->
+
+                {% if job.job_type %}
+
+                    <span class="job-type">
+                        {{ job.job_type }}
+                    </span>
+
+                {% endif %}
+
+
+                <!-- JOB INFORMATION -->
+
+                <div class="job-info">
+
+
+                    <p>
+                        <strong>Company:</strong>
+                        {{ job.company_name }}
+                    </p>
+
+
+                    <p>
+                        <strong>Location:</strong>
+                        {{ job.location }}
+                    </p>
+
+
+                    <p>
+                        <strong>Salary:</strong>
+                        {{ job.salary }}
+                    </p>
+
+
+                    <p>
+                        <strong>Experience:</strong>
+                        {{ job.experience }}
+                    </p>
+
+
+                    {% if job.skills %}
+
+                    <p>
+                        <strong>Skills:</strong>
+                        {{ job.skills }}
+                    </p>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- ================= ACTIONS ================= -->
+
+                <div class="job-actions">
+
+
+                    <a href="{% url 'edit_job' job.id %}"
+                       class="action-btn edit-btn">
+
+                        Edit Job
+
+                    </a>
+
+
+                    <a href="{% url 'delete_job' job.id %}"
+                       class="action-btn delete-btn">
+
+                        Delete Job
+
+                    </a>
+
+
+                    <a href="{% url 'view_applicants' job.id %}"
+                       class="action-btn applicants-btn">
+
+                        View Applicants
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ================= EMPTY ================= -->
+
+        <div class="empty-card">
+
+            <h3>
+                No Jobs Posted Yet
+            </h3>
+
+            <p>
+                You haven't posted any jobs or internships.
+                Start hiring by creating your first opportunity.
+            </p>
+
+
+            <a href="{% url 'post_job' %}"
+               class="empty-post-btn">
+
+                + Post Your First Job
+
+            </a>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+    <footer>
+
+        © 2026 JobPortal | Employer Portal
+
+    </footer>
+
+
+</body>
+
+</html>

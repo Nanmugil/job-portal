@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Send Hiring Offer | JobPortal</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe,
+                    #f8fafc
+                );
+
+            color: #172033;
+            padding: 25px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* ================= TOP BAR ================= */
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+
+            background: #ffffff;
+            color: #2563eb;
+
+            border: 1px solid #dbe3ef;
+
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #eff6ff;
+        }
+
+        /* ================= CARD ================= */
+
+        .offer-card {
+            background: #ffffff;
+
+            padding: 40px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15, 23, 42, 0.10);
+        }
+
+        /* ================= HEADER ================= */
+
+        .offer-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .offer-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ede9fe;
+            color: #7c3aed;
+
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .offer-header h1 {
+            color: #172554;
+
+            font-size: 27px;
+
+            margin-bottom: 7px;
+        }
+
+        .offer-header p {
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        /* ================= STUDENT INFO ================= */
+
+        .student-info {
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 28px;
+        }
+
+        .info-title {
+            color: #172554;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 13px;
+        }
+
+        .info-item {
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 8px;
+
+            padding: 12px;
+        }
+
+        .info-label {
+            display: block;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            display: block;
+
+            color: #172033;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            word-break: break-word;
+        }
+
+        /* ================= FORM ================= */
+
+        .offer-form {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 19px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+        .form-group label {
+            color: #334155;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            border: 1px solid #dbe1ea;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            color: #172033;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .form-group input {
+            height: 50px;
+
+            padding: 0 15px;
+        }
+
+        .form-group textarea {
+            min-height: 135px;
+
+            padding: 13px 15px;
+
+            resize: vertical;
+
+            line-height: 1.5;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #7c3aed;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(124, 58, 237, 0.10);
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .buttons {
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 5px;
+        }
+
+        .btn {
+            height: 50px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .send-btn {
+            flex: 1;
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #6d28d9
+                );
+
+            color: #ffffff;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(124, 58, 237, 0.25);
+        }
+
+        .cancel-btn {
+            flex: 1;
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .cancel-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* ================= NOTE ================= */
+
+        .offer-note {
+            text-align: center;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            margin-top: 2px;
+        }
+
+        /* ================= ERROR ================= */
+
+        .error-box {
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+            border: 1px solid #fecaca;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 18px 12px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 12px;
+            }
+
+            .logo {
+                text-align: center;
+
+                font-size: 23px;
+            }
+
+            .back-btn {
+                text-align: center;
+            }
+
+            .offer-card {
+                padding: 28px 20px;
+
+                border-radius: 14px;
+            }
+
+            .offer-header h1 {
+                font-size: 23px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .send-btn,
+            .cancel-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="top-bar">
+
+        <div class="logo">
+            JobPortal
+        </div>
+
+        <a href="{% url 'view_applicants' application.job.id %}"
+           class="back-btn">
+
+            ← Back to Applicants
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= CARD ================= -->
+
+    <div class="offer-card">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="offer-header">
+
+            <div class="offer-icon">
+                ✓
+            </div>
+
+            <h1>
+                Send Hiring Offer
+            </h1>
+
+            <p>
+                Create and send a hiring offer to the selected student.
+            </p>
+
+        </div>
+
+
+        <!-- ================= ERROR ================= -->
+
+        {% if error %}
+
+            <div class="error-box">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- ================= STUDENT INFORMATION ================= -->
+
+        <div class="student-info">
+
+            <div class="info-title">
+                Candidate Information
+            </div>
+
+
+            <div class="info-grid">
+
+
+                <!-- STUDENT NAME -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Student Name
+                    </span>
+
+                    <span class="info-value">
+                        👤 {{ application.student_name }}
+                    </span>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Email
+                    </span>
+
+                    <span class="info-value">
+                        ✉ {{ application.student_email }}
+                    </span>
+
+                </div>
+
+
+                <!-- JOB -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Job Title
+                    </span>
+
+                    <span class="info-value">
+                        💼 {{ application.job_title }}
+                    </span>
+
+                </div>
+
+
+                <!-- COMPANY -->
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Company
+                    </span>
+
+                    <span class="info-value">
+                        🏢 {{ employer.company_name }}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FORM ================= -->
+
+        <form method="POST"
+              class="offer-form">
+
+            {% csrf_token %}
+
+
+            <!-- ================= SALARY ================= -->
+
+            <div class="form-group">
+
+                <label for="salary">
+                    Salary
+                </label>
+
+                <input
+                    type="text"
+                    id="salary"
+                    name="salary"
+                    placeholder="Example: ₹25,000 per month"
+                    value="{{ offer.salary|default:'' }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ================= LOCATION ================= -->
+
+            <div class="form-group">
+
+                <label for="location">
+                    Job Location
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Example: Chennai"
+                    value="{{ offer.location|default:application.job.location }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ================= OFFER MESSAGE ================= -->
+
+            <div class="form-group">
+
+                <label for="offer_message">
+                    Offer Message
+                </label>
+
+                <textarea
+                    id="offer_message"
+                    name="offer_message"
+                    placeholder="Enter hiring offer message..."
+                    required>{{ offer.offer_message|default:'' }}</textarea>
+
+            </div>
+
+
+            <!-- ================= BUTTONS ================= -->
+
+            <div class="buttons">
+
+                <a href="{% url 'view_applicants' application.job.id %}"
+                   class="btn cancel-btn">
+
+                    Cancel
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="btn send-btn">
+
+                    ✓ Send Hiring Offer
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= NOTE ================= -->
+
+            <p class="offer-note">
+
+                Please review the salary, location and offer message
+                before sending the hiring offer.
+
+            </p>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
