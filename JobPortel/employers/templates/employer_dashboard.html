@@ -204,7 +204,7 @@
             display: grid;
 
             grid-template-columns:
-                repeat(4, 1fr);
+                repeat(3, 1fr);
 
             gap: 18px;
         }
@@ -721,16 +721,59 @@
             </div>
 
 
-            <!-- TOTAL APPLICANTS -->
+            <!-- TOTAL APPLICATIONS -->
 
             <div class="card">
 
                 <h3>
-                    Total Applicants
+                    Total Applications
                 </h3>
 
                 <div class="number">
                     {{ total_applicants }}
+                </div>
+
+            </div>
+
+
+            <!-- REJECTED APPLICATIONS -->
+
+            <div class="card">
+
+                <h3>
+                    Rejected Applications
+                </h3>
+
+                <div class="number">
+                    {{ rejected_applications }}
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= APPLICATION STATUS ================= -->
+
+        <h2 class="section-title">
+            Application Status
+        </h2>
+
+
+        <div class="status-grid">
+
+
+            <!-- PENDING -->
+
+            <div class="card">
+
+                <h3>
+                    Pending Applications
+                </h3>
+
+                <div class="number">
+                    {{ pending_applications }}
                 </div>
 
             </div>
@@ -761,64 +804,6 @@
 
                 <div class="number">
                     {{ rejected_applications }}
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- ================= APPLICATION STATUS ================= -->
-
-        <h2 class="section-title">
-            Application Status
-        </h2>
-
-
-        <div class="status-grid">
-
-
-            <!-- TOTAL APPLICANTS -->
-
-            <div class="card">
-
-                <h3>
-                    Total Applicants
-                </h3>
-
-                <div class="number">
-                    {{ total_applicants }}
-                </div>
-
-            </div>
-
-
-            <!-- PENDING -->
-
-            <div class="card">
-
-                <h3>
-                    Pending Applications
-                </h3>
-
-                <div class="number">
-                    {{ pending_applications }}
-                </div>
-
-            </div>
-
-
-            <!-- ACCEPTED -->
-
-            <div class="card">
-
-                <h3>
-                    Accepted Applications
-                </h3>
-
-                <div class="number">
-                    {{ accepted_applications }}
                 </div>
 
             </div>

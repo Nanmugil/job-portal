@@ -238,24 +238,27 @@ def employer_dashboard(request):
     # HIRING OFFERS
     # -----------------------------------------
 
+   # -----------------------------------------
+   # HIRING OFFERS
+   # -----------------------------------------
+
     hiring_offers = HiringOffer.objects.filter(
-        company_name=employer.company_name
+    application__job__in=jobs
     ).order_by("-id")
 
     total_hiring_offers = hiring_offers.count()
 
     accepted_hiring_offers = hiring_offers.filter(
-        status="Accepted"
+    status="Accepted"
     ).count()
 
     rejected_hiring_offers = hiring_offers.filter(
-        status="Rejected"
+    status="Rejected"
     ).count()
 
     pending_hiring_offers = hiring_offers.filter(
-        status="Offered"
+    status="Offered"
     ).count()
-
     # =====================================================
     # DEBUG - JOBS
     # =====================================================
