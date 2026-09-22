@@ -23,10 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-mkvw4p4gh4!-b*(l4==76#!_$y29xphr3f*cooib3ktzug018s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "job-portal-w76c.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://job-portal-w76c.onrender.com",
+]
 
 # Application definition
 
@@ -106,6 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
+CSRF_TRUSTED_ORIGINS = [
+    "https://job-portal-w76c.onrender.com",
+]
 
 LANGUAGE_CODE = 'en-us'
 
